@@ -16,6 +16,7 @@ export type Pool = {
     name: string,
     liquidity: number,
     today_fees: number,
+    base_fee_percentage: number,
     cumulative_trade_volume: number,
     bin_step: number,
     ratio: number,
@@ -29,6 +30,13 @@ export const columns: ColumnDef<Pool>[] = [
   {
     accessorKey: "bin_step",
     header: "Bin step",
+  },
+  {
+    accessorKey: "base_fee_percentage",
+    header: "Base Fee",
+    cell: ({ row }) => {
+      return <div>{row.getValue("base_fee_percentage")}%</div>;
+  }
   },
   {
     accessorKey: "cumulative_trade_volume",
