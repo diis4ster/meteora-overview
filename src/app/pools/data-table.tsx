@@ -59,14 +59,15 @@ export function DataTable<TData, TValue>({
     });
     useEffect(() => {
         table.setPageSize(30);
-    }, []);
+        table.getColumn("liquidity")?.toggleSorting(true);
+    }, [table]);
     useEffect(() => {
         if (showLowTVL) {
             table.getColumn("liquidity")?.setFilterValue(undefined);
         } else {
             table.getColumn("liquidity")?.setFilterValue(1);
         }
-    }, [showLowTVL]);
+    }, [showLowTVL, table]);
  
   return (
     <div>

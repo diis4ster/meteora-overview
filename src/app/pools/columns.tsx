@@ -36,9 +36,6 @@ export const columns: ColumnDef<Pool>[] = [
       return parseFloat(row.getValue("liquidity")) > 10;
     },
     header: ({ column }) => {
-      useEffect(()=>{
-        column.toggleSorting(true);
-      }, []);
         return (
           <Button
             variant="ghost"
