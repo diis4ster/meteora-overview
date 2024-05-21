@@ -16,6 +16,7 @@ export type Pool = {
     name: string,
     liquidity: number,
     today_fees: number,
+    cumulative_trade_volume: number,
     bin_step: number,
     ratio: number,
 }
@@ -28,6 +29,31 @@ export const columns: ColumnDef<Pool>[] = [
   {
     accessorKey: "bin_step",
     header: "Bin step",
+  },
+  {
+    accessorKey: "cumulative_trade_volume",
+    header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Volume 24h
+            <CaretSortIcon className="ml-2 h-4 w-4" />
+          </Button>
+        )
+      },
+    cell: ({ row }) => {
+        const value = parseFloat(row.getValue("cumulative_trade_volume"))
+   
+        // Format the amount as a dollar amount
+        const formatted = new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(value)
+
+        return formatted;
+    },
   },
   {
     accessorKey: "liquidity",
