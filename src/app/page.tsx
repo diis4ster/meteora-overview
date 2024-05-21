@@ -1,27 +1,29 @@
 import { ModeToggle } from "@/components/ui/dark-mode-toggle";
-import { Pool, columns } from "./pools/columns"
-import { DataTable } from "./pools/data-table"
- 
-async function getData(filterLowLiq: boolean): Promise<Pool[]> {
+import { Pool, columns } from "./pools/columns";
+import { DataTable } from "./pools/data-table";
+
+async function getData(): Promise<Pool[]> {
   try {
-    const response = await fetch('https://dlmm-api.meteora.ag/pair/all'); // Replace with your API URL
+    const response = await fetch('https://dlmm-api.meteora.ag/pair/all', {
+      next: { revalidate: 30 } // Revalidate the data every 30 seconds
+    });
     if (!response.ok) {
-      throw new Error('Network response was not ok' + response.statusText);
+      throw new Error('Network response was not ok ' + response.statusText);
     }
     const data: Pool[] = await response.json();
     data.forEach(el => {
-      el["ratio"] = (el.today_fees / el.liquidity) * 100 || 0
+      el["ratio"] = (el.today_fees / el.liquidity) * 100 || 0;
     });
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    return []; // Return an empty array or handle it as per your requirements
+    return []; 
   }
 }
- 
+
 export default async function DemoPage() {
-  const data = await getData(true)
- 
+  const data = await getData();
+
   return (
     <div className="container mx-auto py-10">
       <div className="flex items-center justify-between space-x-2 py-4">
@@ -34,5 +36,5 @@ export default async function DemoPage() {
             <div>2024</div>
       </footer>
     </div>
-  )
+  );
 }
