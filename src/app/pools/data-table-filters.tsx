@@ -31,8 +31,9 @@ export default function DataTableFilters<TData>({
             </PopoverTrigger>
             <PopoverContent>
                 <div className="flex items-center space-x-2 mt-4">
-                    <Label htmlFor="min-liq" className="whitespace-nowrap text-sm">Min TVL:</Label>
+                    <Label htmlFor="min-liq" className="whitespace-nowrap text-sm">Min $TVL:</Label>
                     <Input
+                        type="number"
                         placeholder="0"
                         value={(table.getColumn("liquidity")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
