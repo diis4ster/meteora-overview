@@ -12,7 +12,7 @@ async function getData(): Promise<Pool[]> {
     }
     const data: Pool[] = await response.json();
     data.forEach(el => {
-      el["ratio"] = (el.today_fees / el.liquidity) * 100 || 0;
+      el["ratio"] = (el.fees_24h / el.liquidity) * 100 || 0;
     });
     return data;
   } catch (error) {

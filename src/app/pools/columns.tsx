@@ -14,7 +14,7 @@ export type Pool = {
     address: string,
     name: string,
     liquidity: number,
-    today_fees: number,
+    fees_24h: number,
     base_fee_percentage: number,
     cumulative_trade_volume: number,
     bin_step: number,
@@ -92,7 +92,7 @@ export const columns: ColumnDef<Pool>[] = [
     },
   },
   {
-    accessorKey: "today_fees",
+    accessorKey: "fees_24h",
     header: ({ column }) => {
         return (
           <Button
@@ -105,7 +105,7 @@ export const columns: ColumnDef<Pool>[] = [
         )
       },
     cell: ({ row }) => {
-        const value = parseFloat(row.getValue("today_fees"))
+        const value = parseFloat(row.getValue("fees_24h"))
    
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
