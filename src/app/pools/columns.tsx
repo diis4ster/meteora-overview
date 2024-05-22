@@ -5,9 +5,8 @@ import { Button, buttonVariants } from "@/components/ui/button"
 
 import {
     ExternalLinkIcon,
-    CaretSortIcon
+    CaretSortIcon,
   } from "@radix-ui/react-icons"
-import { useEffect } from "react"
  
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -67,7 +66,7 @@ export const columns: ColumnDef<Pool>[] = [
     accessorKey: "liquidity",
     
     filterFn: (row, columnId, filterValue) => {
-      return parseFloat(row.getValue("liquidity")) > 10;
+      return parseFloat(row.getValue("liquidity")) > filterValue;
     },
     header: ({ column }) => {
         return (
