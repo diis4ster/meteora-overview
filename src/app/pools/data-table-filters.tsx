@@ -40,7 +40,7 @@ export default function DataTableFilters<TData>({
                         id="min-liq"
                     />
                 </div>
-                <Badge variant="outline" className="bg-cyan-900 max-w-sm mt-5">* This menu is experimental and it can break. Additional filters will be added.</Badge>
+                <Badge variant="outline" className="bg-warning text-warning-foreground max-w-sm mt-5">* This menu is experimental and it can break. Additional filters will be added.</Badge>
             </PopoverContent>
         </Popover>
     );
