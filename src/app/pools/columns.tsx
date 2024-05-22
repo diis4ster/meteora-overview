@@ -142,8 +142,8 @@ export const columns: ColumnDef<Pool>[] = [
     header: "Link",
     cell: ({ row }) => {
         const link = "https://app.meteora.ag/dlmm/" + row.getValue("address");
-        return <div>
-            <a href={link} target="_blank">
+        return <div className="flex items-center justify-center">
+            <a className="outline outline-1 outline-orange-500/90 p-1.5 rounded-sm" href={link} target="_blank">
                 <ExternalLinkIcon/>
             </a>
         </div>;

@@ -25,7 +25,8 @@ export default function DataTableFilters<TData>({
                     onClick={() => { }}
                 >
                     <Crosshair2Icon className="mr-2 h-4 w-4" />
-                    Advanced Filters
+                    <span className="block sm:hidden">Filters</span>
+                    <span className="hidden sm:block">Advanced Filters</span>
                 </Button>
             </PopoverTrigger>
             <PopoverContent>

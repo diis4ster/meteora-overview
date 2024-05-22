@@ -17,7 +17,7 @@ async function getData(): Promise<Pool[]> {
     return data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    return []; 
+    return [];
   }
 }
 
@@ -27,13 +27,23 @@ export default async function DemoPage() {
   return (
     <div className="container mx-auto py-10">
       <div className="flex items-center justify-between space-x-2 py-4">
-        <div><h1 className="text-2xl font-bold">Meteora Liquidity Pools Overview</h1></div>
-        <ModeToggle/> 
+        {/* Meteora gradient: 87deg, #FF2189 -36.79%, #FF9D00 114.4%*/}
+        <div>
+          <h1 className="text-2xl font-bold inline-block text-transparent bg-clip-text md:text-3xl"
+            style={{ backgroundImage: 'linear-gradient(87deg, #FF2189 -36.79%, #FF9D00 114.4%)' }}>
+            Meteora Liquidity Pools Overview
+          </h1>
+        </div>
+        <ModeToggle />
       </div>
       <DataTable columns={columns} data={data} />
       <footer className="flex items-center justify-between space-x-2 py-4 text-sm text-slate-500">
-            <div>Made for the Meteora community, with love by <span className="font-bold">Diisaster</span>.</div>
-            <div>2024</div>
+        <div className="flex flex-wrap">
+          <span className="mr-1">Made for the Meteora community,</span>
+          <span>with love by <span className="font-bold text-transparent bg-clip-text"
+            style={{ backgroundImage: 'linear-gradient(87deg, #FF2189 -36.79%, #FF9D00 114.4%)' }}>Diisaster</span>.</span>
+        </div>
+        <div>2024</div>
       </footer>
     </div>
   );

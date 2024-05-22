@@ -67,20 +67,22 @@ export function DataTable<TData, TValue>({
     }, [table]);
     return (
         <div>
-            <div className="flex items-center justify-between py-4">
-                <div className="flex items-center justify-between py-4">
+            <div className="flex flex-wrap items-center justify-between py-3 w-full">
+                <div className="flex items-center justify-between py-3 w-full md:w-auto">
                     <Input
                         placeholder="Filter by name..."
                         value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             table.getColumn("name")?.setFilterValue(event.target.value)
                         }
-                        className="max-w-sm mr-4"
+                        className="max-w-fit mr-2"
                         autoFocus
                     />
                     <DataTableFilters table={table} />
                 </div>
-                <DataTablePagination table={table} />
+                <div className="ml-auto mt-3 md:mt-0">
+                    <DataTablePagination table={table} />
+                </div>
             </div>
             <div className="rounded-md border">
                 <Table>
