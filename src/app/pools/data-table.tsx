@@ -1,10 +1,5 @@
 "use client"
 import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-
-import {
-    Crosshair2Icon
-} from "@radix-ui/react-icons"
 
 import * as React from "react"
 import {
@@ -63,7 +58,7 @@ export function DataTable<TData, TValue>({
     useEffect(() => {
         table.setPageSize(30);
         table.getColumn("liquidity")?.toggleSorting(true);
-        table.getColumn("liquidity")?.setFilterValue(500);
+        table.getColumn("liquidity")?.setFilterValue(5);
     }, [table]);
     return (
         <div>
