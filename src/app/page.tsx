@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/ui/dark-mode-toggle";
 import { Pool, columns } from "./pools/columns";
 import { DataTable } from "./pools/data-table";
+import Goose from "@/components/ui/goose";
 
 async function getData(): Promise<Pool[]> {
   try {
@@ -42,7 +43,7 @@ export default async function DemoPage() {
           <span className="mr-1">Made for the Meteora community,</span>
           <span>with love by <span className="font-bold text-transparent bg-clip-text"
             style={{ backgroundImage: 'linear-gradient(87deg, #FF2189 -36.79%, #FF9D00 114.4%)' }}>Diisaster</span>.</span>
-            <img className="ml-2" width={20} src="goose.svg" alt="Happy goose"/>
+            <Goose/>
         </div>
         <div>2024</div>
       </footer>
