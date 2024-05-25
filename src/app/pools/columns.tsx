@@ -1,5 +1,6 @@
 "use client"
 
+import { formatDistanceToNow } from 'date-fns';
 import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 
@@ -7,6 +8,7 @@ import {
   ExternalLinkIcon,
   CaretSortIcon,
 } from "@radix-ui/react-icons"
+import { CombinedPair } from "@/lib/interfaces"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -29,7 +31,7 @@ function getBirdeyeAddr(mint_x: string, mint_y: string) {
   return mint_x;
 }
 
-export const columns: ColumnDef<Pool>[] = [
+export const columns: ColumnDef<CombinedPair>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -45,6 +47,25 @@ export const columns: ColumnDef<Pool>[] = [
     },
   },
   {
+    accessorKey: "created",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Age
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const created = new Date(row.getValue("created"));
+      const timeAgo = formatDistanceToNow(new Date(created), { addSuffix: true });
+      return <div>{timeAgo}</div>;
+    }
+  },
+  {
     accessorKey: "bin_step",
     header: "Bin step",
   },
@@ -56,20 +77,95 @@ export const columns: ColumnDef<Pool>[] = [
     }
   },
   {
-    accessorKey: "cumulative_trade_volume",
+    accessorKey: "vol_m5",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Volume 24h
+          Vol. 5m
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       )
     },
     cell: ({ row }) => {
-      const value = parseFloat(row.getValue("cumulative_trade_volume"))
+      const value = parseFloat(row.getValue("vol_m5"))
+
+      // Format the amount as a dollar amount
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value)
+
+      return formatted;
+    },
+  },
+  {
+    accessorKey: "vol_h1",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Vol. 1h
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const value = parseFloat(row.getValue("vol_h1"))
+
+      // Format the amount as a dollar amount
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value)
+
+      return formatted;
+    },
+  },
+  {
+    accessorKey: "vol_h6",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Vol. 6h
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const value = parseFloat(row.getValue("vol_h6"))
+
+      // Format the amount as a dollar amount
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value)
+
+      return formatted;
+    },
+  },
+  {
+    accessorKey: "vol_h24",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Vol. 24h
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const value = parseFloat(row.getValue("vol_h24"))
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
@@ -110,7 +206,7 @@ export const columns: ColumnDef<Pool>[] = [
     },
   },
   {
-    accessorKey: "fees_24h",
+    accessorKey: "fees_h24",
     header: ({ column }) => {
       return (
         <Button
@@ -123,7 +219,7 @@ export const columns: ColumnDef<Pool>[] = [
       )
     },
     cell: ({ row }) => {
-      const value = parseFloat(row.getValue("fees_24h"))
+      const value = parseFloat(row.getValue("fees_h24"))
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {

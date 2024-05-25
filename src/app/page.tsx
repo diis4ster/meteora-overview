@@ -1,23 +1,23 @@
 import { ModeToggle } from "@/components/ui/dark-mode-toggle";
-import { Pool, columns } from "./pools/columns";
+import { columns } from "./pools/columns";
 import { DataTable } from "./pools/data-table";
 import Goose from "@/components/ui/goose";
+import { getCombinedPairs } from "@/lib/dexscreener";
 
-async function getData(): Promise<Pool[]> {
+async function getData() {
+  const chainId = 'solana';
+  const pairAddresses = [
+    'ARwi1S4DaiTG5DX7S4M4ZsrXqpMD1MrTmbu9ue2tpmEq',
+    '8iibPkw7zbNHMPcihHeBgcL7rDnHteZb2NfvTy8bNm7d',
+    '27M7AnaFpW68thenG1oVAc7TCVnjPGM3LeZr3HixmQRG'
+    // ... (add more addresses up to 1200 for testing)
+  ];
+
   try {
-    const response = await fetch('https://dlmm-api.meteora.ag/pair/all', {
-      next: { revalidate: 20 } // Revalidate the data every 30 seconds
-    });
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    const data: Pool[] = await response.json();
-    data.forEach(el => {
-      el["ratio"] = (el.fees_24h / el.liquidity) * 100 || 0;
-    });
-    return data;
+    const combinedPairs = await getCombinedPairs();
+    return combinedPairs;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error:', error);
     return [];
   }
 }

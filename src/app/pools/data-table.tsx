@@ -59,7 +59,7 @@ export function DataTable<TData, TValue>({
     useEffect(() => {
         table.setPageSize(30);
         table.getColumn("liquidity")?.toggleSorting(true);
-        table.getColumn("liquidity")?.setFilterValue(5);
+        //table.getColumn("liquidity")?.setFilterValue(5);
     }, [table]);
     return (
         <div>
