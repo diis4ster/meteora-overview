@@ -12,3 +12,17 @@ export function splitArrayIntoChunks<T>(array: T[], chunkSize: number): T[][] {
   }
   return result;
 }
+
+export function kFormatter(num: number) {
+  if (Math.abs(num) >= 1000000000) {
+    return "$" + (Math.sign(num) * Math.abs(num) / 1000000).toFixed(1) + 'T';
+  } else if (Math.abs(num) >= 1000000) {
+    return "$" + (Math.sign(num) * Math.abs(num) / 1000000).toFixed(1) + 'B';
+  } else if (Math.abs(num) >= 1000000) {
+    return "$" + (Math.sign(num) * Math.abs(num) / 1000000).toFixed(1) + 'M';
+  } else if (Math.abs(num) >= 1000) {
+    return "$" + (Math.sign(num) * Math.abs(num) / 1000).toFixed(1) + 'K';
+  } else {
+    return "$" + (Math.sign(num) * Math.abs(num)).toFixed(2);
+  }
+}

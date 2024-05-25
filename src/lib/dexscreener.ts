@@ -58,8 +58,8 @@ export async function getCombinedPairs(): Promise<any[]> {
           vol_h6: dexPair.volume.h6,
           vol_h1: dexPair.volume.h1,
           vol_m5: dexPair.volume.m5,
-          ratio: dexPair.liquidity ? (meteoraPair.fees_24h / dexPair.liquidity?.quote) * 100 : 0,
-          liquidity: dexPair.liquidity ? dexPair.liquidity?.quote : 0,
+          ratio: dexPair.liquidity?.usd ? (meteoraPair.fees_24h / dexPair.liquidity?.usd) * 100 : 0,
+          liquidity: dexPair.liquidity?.usd ? dexPair.liquidity?.usd : 0,
           created: dexPair.pairCreatedAt
         });
       } else {

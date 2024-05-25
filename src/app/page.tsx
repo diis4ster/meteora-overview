@@ -5,13 +5,6 @@ import Goose from "@/components/ui/goose";
 import { getCombinedPairs } from "@/lib/dexscreener";
 
 async function getData() {
-  const chainId = 'solana';
-  const pairAddresses = [
-    'ARwi1S4DaiTG5DX7S4M4ZsrXqpMD1MrTmbu9ue2tpmEq',
-    '8iibPkw7zbNHMPcihHeBgcL7rDnHteZb2NfvTy8bNm7d',
-    '27M7AnaFpW68thenG1oVAc7TCVnjPGM3LeZr3HixmQRG'
-    // ... (add more addresses up to 1200 for testing)
-  ];
 
   try {
     const combinedPairs = await getCombinedPairs();

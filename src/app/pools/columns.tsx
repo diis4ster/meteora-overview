@@ -10,20 +10,7 @@ import {
 } from "@radix-ui/react-icons"
 import { CombinedPair } from "@/lib/interfaces"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Pool = {
-  address: string,
-  name: string,
-  liquidity: number,
-  fees_24h: number,
-  base_fee_percentage: number,
-  cumulative_trade_volume: number,
-  bin_step: number,
-  ratio: number,
-  mint_x: string,
-  mint_y: string
-}
+import { kFormatter } from '@/lib/utils';
 
 //Get birdeye link
 function getBirdeyeAddr(mint_x: string, mint_y: string) {
@@ -93,10 +80,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
       const value = parseFloat(row.getValue("vol_m5"))
 
       // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     },
@@ -117,11 +101,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const value = parseFloat(row.getValue("vol_h1"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     },
@@ -142,11 +122,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const value = parseFloat(row.getValue("vol_h6"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     },
@@ -167,11 +143,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const value = parseFloat(row.getValue("vol_h24"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     },
@@ -196,11 +168,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const value = parseFloat(row.getValue("liquidity"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     },
@@ -221,11 +189,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const value = parseFloat(row.getValue("fees_h24"))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(value)
+      const formatted = kFormatter(value);
 
       return formatted;
     }
