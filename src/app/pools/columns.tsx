@@ -229,6 +229,7 @@ export const columns: ColumnDef<CombinedPair>[] = [
     cell: ({ row }) => {
       const met = "https://app.meteora.ag/dlmm/" + row.getValue("address");
       const rug = "https://rugcheck.xyz/tokens/" + row.getValue("address");
+      const geek = "https://dune.com/geeklad/meteora-dlmm-fee-to-tvl?pair_address_tb3c72=" + row.getValue("address");
       const dex = "https://dexscreener.com/solana/" + row.getValue("address");
       const bird = `https://birdeye.so/token/${getBirdeyeAddr(row.getValue("mint_x"), row.getValue("mint_y"))}/${row.getValue("address")}?chain=solana`;
       return <div className="flex items-center justify-center">
@@ -245,6 +246,11 @@ export const columns: ColumnDef<CombinedPair>[] = [
         <a className="outline bg-secondary outline-1 outline-secondary/90 p-1 rounded-sm mr-2" href={rug} target="_blank">
           <abbr title="RugCheck">
             <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-rug.jpg" alt="rugcheck" />
+          </abbr>
+        </a>
+        <a className="outline bg-secondary outline-1 outline-secondary/90 p-1 rounded-sm mr-2" href={geek} target="_blank">
+          <abbr title="GeekLad's Report">
+            <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-dune.ico" alt="rugcheck" />
           </abbr>
         </a>
         <a className="outline bg-secondary outline-1 outline-orange-500/90 p-1 rounded-sm mr-2" href={met} target="_blank">

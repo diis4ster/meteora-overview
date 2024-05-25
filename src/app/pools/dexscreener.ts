@@ -60,7 +60,9 @@ export async function getCombinedPairs(): Promise<any[]> {
           vol_m5: dexPair.volume.m5,
           ratio: dexPair.liquidity?.usd ? (meteoraPair.fees_24h / dexPair.liquidity?.usd) * 100 : 0,
           liquidity: dexPair.liquidity?.usd ? dexPair.liquidity?.usd : 0,
-          created: dexPair.pairCreatedAt
+          created: dexPair.pairCreatedAt,
+          mint_x: meteoraPair.mint_x,
+          mint_y: meteoraPair.mint_y,
         });
       } else {
         combinedPairs.push(dexPair);
