@@ -48,17 +48,25 @@ export const columns: ColumnDef<CombinedPair>[] = [
     },
     cell: ({ row }) => {
       const created = new Date(row.getValue("created"));
-      const timeAgo = formatDistanceToNow(new Date(created), { addSuffix: true });
+      const timeAgo = formatDistanceToNow(new Date(created), { addSuffix: false });
       return <div>{timeAgo}</div>;
     }
   },
   {
     accessorKey: "bin_step",
-    header: "Bin step",
+    header: () => {
+      return (
+        <div className="flex whitespace-nowrap">Bin Step</div>
+      )
+    },
   },
   {
     accessorKey: "base_fee_percentage",
-    header: "Base Fee",
+    header: () => {
+      return (
+        <div className="flex whitespace-nowrap">Base Fee</div>
+      )
+    },
     cell: ({ row }) => {
       return <div>{row.getValue("base_fee_percentage")}%</div>;
     }
