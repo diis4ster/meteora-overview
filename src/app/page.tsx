@@ -1,3 +1,5 @@
+export const revalidate = 120;
+
 import { ModeToggle } from "@/components/ui/dark-mode-toggle";
 import { columns } from "./pools/columns";
 import { DataTable } from "./pools/data-table";

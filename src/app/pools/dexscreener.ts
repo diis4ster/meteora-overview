@@ -1,5 +1,3 @@
-export const revalidate = 120;
-
 import { PairsResponse, Pair, MeteoraPair } from './interfaces';
 import { splitArrayIntoChunks } from '../../lib/utils';
 import { getMeteoraPairs } from './meteora';
