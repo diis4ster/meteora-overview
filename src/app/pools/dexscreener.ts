@@ -1,5 +1,5 @@
 import { PairsResponse, Pair, MeteoraPair } from './interfaces';
-import { splitArrayIntoChunks } from './utils';
+import { splitArrayIntoChunks } from '../../lib/utils';
 import { getMeteoraPairs } from './meteora';
 
 const BASE_URL = 'https://api.dexscreener.com/latest/dex';

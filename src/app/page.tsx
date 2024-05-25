@@ -2,7 +2,7 @@ import { ModeToggle } from "@/components/ui/dark-mode-toggle";
 import { columns } from "./pools/columns";
 import { DataTable } from "./pools/data-table";
 import Goose from "@/components/ui/goose";
-import { getCombinedPairs } from "@/lib/dexscreener";
+import { getCombinedPairs } from "@/app/pools/dexscreener";
 
 async function getData() {
 

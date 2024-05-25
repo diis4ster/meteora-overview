@@ -8,7 +8,7 @@ import {
   ExternalLinkIcon,
   CaretSortIcon,
 } from "@radix-ui/react-icons"
-import { CombinedPair } from "@/lib/interfaces"
+import { CombinedPair } from "@/app/pools/interfaces"
 
 import { kFormatter } from '@/lib/utils';
 
