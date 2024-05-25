@@ -26,6 +26,7 @@ import {
 import { DataTablePagination } from "./data-table-pagination"
 import { useEffect } from "react"
 import DataTableFilters from "./data-table-filters"
+import { Label } from "@/components/ui/label"
 
 
 interface DataTableProps<TData, TValue> {
@@ -63,17 +64,34 @@ export function DataTable<TData, TValue>({
     return (
         <div>
             <div className="flex flex-wrap items-center justify-between py-3 w-full">
-                <div className="flex items-center justify-between py-3 w-full md:w-auto">
-                    <Input
-                        placeholder="Filter by name..."
-                        value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-                        onChange={(event) =>
-                            table.getColumn("name")?.setFilterValue(event.target.value)
-                        }
-                        className="max-w-fit mr-2"
-                        autoFocus
-                    />
-                    <DataTableFilters table={table} />
+                <div className="flex flex-wrap items-center justify-between py-3 w-full md:w-auto">
+                    <div className="flex items-center py-3">
+                        <Label htmlFor="name" className="whitespace-nowrap text-sm mr-2">Name</Label>
+                        <Input
+                            placeholder="Filter by name..."
+                            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+                            onChange={(event) =>
+                                table.getColumn("name")?.setFilterValue(event.target.value)
+                            }
+                            className="w-32 mr-5 sm:w-64"
+                            id="name"
+                            autoFocus
+                        />
+                    </div>
+                    {/* <DataTableFilters table={table} /> */}
+                    <div className="flex items-center py-3">
+                        <Label htmlFor="min-liq" className="whitespace-nowrap text-sm mr-2">Min $TVL</Label>
+                        <Input
+                            type="number"
+                            placeholder="0"
+                            value={(table.getColumn("liquidity")?.getFilterValue() as string) ?? ""}
+                            onChange={(event) =>
+                                table.getColumn("liquidity")?.setFilterValue(event.target.value)
+                            }
+                            id="min-liq"
+                            className="w-16 mr-5 sm:w-32"
+                        />
+                    </div>
                 </div>
                 <div className="ml-auto mt-3 md:mt-0">
                     <DataTablePagination table={table} />
