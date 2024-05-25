@@ -156,22 +156,22 @@ export const columns: ColumnDef<Pool>[] = [
       return <div className="flex items-center justify-center">
         <a className="outline bg-secondary outline-1 outline-secondary/90 p-1 rounded-sm mr-2" href={bird} target="_blank">
           <abbr title="Birdeye">
-            <img width={13} src="/icon-bird.ico" alt="birdeye" />
+            <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-bird.ico" alt="birdeye" />
           </abbr>
         </a>
         <a className="outline bg-secondary outline-1 outline-secondary/90 p-1 rounded-sm mr-2" href={dex} target="_blank">
           <abbr title="DexScreener">
-            <img width={13} src="/icon-dex.png" alt="dexscreener" />
+            <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-dex.png" alt="dexscreener" />
           </abbr>
         </a>
         <a className="outline bg-secondary outline-1 outline-secondary/90 p-1 rounded-sm mr-2" href={rug} target="_blank">
           <abbr title="RugCheck">
-            <img width={13} src="/icon-rug.jpg" alt="rugcheck" />
+            <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-rug.jpg" alt="rugcheck" />
           </abbr>
         </a>
         <a className="outline bg-secondary outline-1 outline-orange-500/90 p-1 rounded-sm mr-2" href={met} target="_blank">
           <abbr title="Meteora">
-            <img width={13} src="/icon-met.svg" alt="meteora" />
+            <img className="min-w-7 w-7 sm:min-w-4 sm:w-4" src="/icon-met.svg" alt="meteora" />
           </abbr>
         </a>
       </div>;
@@ -180,9 +180,11 @@ export const columns: ColumnDef<Pool>[] = [
   {
     accessorKey: "mint_x",
     header: ({ column }) => {column.toggleVisibility();},
+    cell: ({row}) => {}
   },
   {
     accessorKey: "mint_y",
     header: ({ column }) => {column.toggleVisibility();},
+    cell: ({row}) => {}
   },
 ]
