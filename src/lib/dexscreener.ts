@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { PairsResponse, Pair, MeteoraPair } from './interfaces';
 import { splitArrayIntoChunks } from './utils';
 import { getMeteoraPairs } from './meteora';
@@ -16,8 +15,12 @@ export async function getDexPairs(pairAddresses: string[]): Promise<{ [address: 
   for (const chunk of chunks) {
     const url = `${BASE_URL}/pairs/solana/${chunk.join(',')}`;
     try {
-      const response = await axios.get<PairsResponse>(url);
-      response.data.pairs?.forEach(pair => {
+      const response = await fetch(url, { next: { revalidate: 120 } });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data: PairsResponse = await response.json();
+      data.pairs?.forEach(pair => {
         pairsByAddress[pair.pairAddress] = pair;
       });
     } catch (error) {
@@ -31,14 +34,8 @@ export async function getDexPairs(pairAddresses: string[]): Promise<{ [address: 
 
 export async function getCombinedPairs(): Promise<any[]> {
   try {
-
     const meteoraPairs = await getMeteoraPairs();
-
-    const pairAddresses: string[] = [];
-    meteoraPairs.forEach(pair => {
-      pairAddresses.push(pair.address);
-    });
-
+    const pairAddresses: string[] = meteoraPairs.map(pair => pair.address);
     const dexPairs = await getDexPairs(pairAddresses);
 
     const meteoraPairsByAddress: { [address: string]: MeteoraPair } = {};
@@ -47,7 +44,6 @@ export async function getCombinedPairs(): Promise<any[]> {
     });
 
     const combinedPairs: any[] = [];
-
 
     for (const [address, dexPair] of Object.entries(dexPairs)) {
       const meteoraPair = meteoraPairsByAddress[address];
@@ -62,8 +58,8 @@ export async function getCombinedPairs(): Promise<any[]> {
           vol_h6: dexPair.volume.h6,
           vol_h1: dexPair.volume.h1,
           vol_m5: dexPair.volume.m5,
-          ratio: dexPair.liquidity? (meteoraPair.fees_24h / dexPair.liquidity?.quote) * 100 : 0,
-          liquidity: dexPair.liquidity? dexPair.liquidity?.quote : 0,
+          ratio: dexPair.liquidity ? (meteoraPair.fees_24h / dexPair.liquidity?.quote) * 100 : 0,
+          liquidity: dexPair.liquidity ? dexPair.liquidity?.quote : 0,
           created: dexPair.pairCreatedAt
         });
       } else {
