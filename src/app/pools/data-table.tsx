@@ -1,4 +1,7 @@
 "use client"
+
+export const dynamic = 'force-dynamic'
+
 import { Input } from "@/components/ui/input"
 
 import * as React from "react"
@@ -59,7 +62,6 @@ export function DataTable<TData, TValue>({
     useEffect(() => {
         table.setPageSize(30);
         table.getColumn("liquidity")?.toggleSorting(true);
-        //table.getColumn("liquidity")?.setFilterValue(5);
     }, [table]);
     return (
         <div>
