@@ -5,6 +5,7 @@ import { DataTable } from "./pools/data-table";
 import Goose from "@/components/ui/goose";
 import { getCombinedPairs } from "@/app/pools/dexscreener";
 import { CombinedPair } from './pools/interfaces';
+import { revalidatePath } from "next/cache";
 
 export const revalidate = 120; // Revalidate every 120 seconds
 
@@ -16,6 +17,8 @@ export default async function DemoPage() {
   } catch (error) {
     console.error('Error:', error);
   }
+
+  setInterval(()=>revalidatePath("/", "layout"), 120000);
 
   return (
     <div className="container mx-auto py-10">
