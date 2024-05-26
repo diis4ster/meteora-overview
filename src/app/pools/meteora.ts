@@ -1,5 +1,7 @@
 import { MeteoraPair } from './interfaces';
 
+export const revalidate = 120;
+
 const METEORA_URL = 'https://dlmm-api.meteora.ag/pair/all';
 
 export async function getMeteoraPairs(): Promise<MeteoraPair[]> {

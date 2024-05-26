@@ -1,5 +1,7 @@
 "use client"
 
+export const revalidate = 120;
+
 import { formatDistanceToNow } from 'date-fns';
 import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"

@@ -1,3 +1,5 @@
+export const revalidate = 120;
+
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

@@ -2,6 +2,8 @@ import { PairsResponse, Pair, MeteoraPair } from './interfaces';
 import { splitArrayIntoChunks } from '../../lib/utils';
 import { getMeteoraPairs } from './meteora';
 
+export const revalidate = 120;
+
 const BASE_URL = 'https://api.dexscreener.com/latest/dex';
 
 function delay(ms: number) {
