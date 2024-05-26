@@ -1,9 +1,6 @@
 "use client"
 
-export const revalidate = 120;
-
 import { Input } from "@/components/ui/input"
-
 import * as React from "react"
 import {
     ColumnDef,
@@ -16,7 +13,6 @@ import {
     getPaginationRowModel,
     useReactTable,
 } from "@tanstack/react-table"
-
 import {
     Table,
     TableBody,
@@ -25,12 +21,10 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-
 import { DataTablePagination } from "./data-table-pagination"
 import { useEffect } from "react"
 import DataTableFilters from "./data-table-filters"
 import { Label } from "@/components/ui/label"
-
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
